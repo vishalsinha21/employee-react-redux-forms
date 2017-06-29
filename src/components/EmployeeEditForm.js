@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { validate } from './Validations'
-import { renderField } from './Form'
+import { renderField } from './InputField'
 
 class EmployeeEditForm extends React.Component {
 

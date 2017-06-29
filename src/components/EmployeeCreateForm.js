@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form'
 import { validate } from './Validations'
-import { renderField } from './Form'
+import { renderField } from './InputField'
 
 class EmployeeCreateForm extends React.Component {
 
