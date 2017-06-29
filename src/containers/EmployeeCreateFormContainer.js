@@ -8,12 +8,10 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
   onSubmit: (values) => {
     dispatch(addEmployee(values.firstName, values.lastName, values.phone))
     browserHistory.push('/')
   }
-
 })
 
 const EmployeeCreateFormContainer = connect(

@@ -37,13 +37,8 @@ const employees = (state = employeesArr, action) => {
     case "DELETE_EMPLOYEE":
       return state.filter(({ id }) => id !== action.id);
     case "EDIT_EMPLOYEE":
-      return
-          state.map(employee => employee.id === action.id ?
-          {...employee, firstName: action.firstName, lastName: action.lastName, phone: action.phone} :
-          employee)
-    case "UPDATE_FIELD":
-        var newState = state.map(employee => employee.id === action.id ?
-        {...employee, [action.key]: action.value} :
+      var newState = state.map(employee => employee.id === action.id ?
+      {...employee, firstName: action.firstName, lastName: action.lastName, phone: action.phone} :
       employee)
       return newState;
     default:

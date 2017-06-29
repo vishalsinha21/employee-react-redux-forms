@@ -1,44 +1,29 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import Header from './Header'
-import { Link, browserHistory } from 'react-router';
+import { Field, reduxForm } from 'redux-form'
 
 
 class EmployeeEditForm extends React.Component {
 
-  constructor() {
-    super();
-    this.submitForm = (employeeId) => ev => {
-      ev.preventDefault();
-      this.props.onDelete(employeeId);
-      browserHistory.push('/')
-    }
-    this.updateField = (employeeId, key) => ev => {
-      this.props.updateField(employeeId, key, ev.target.value);
-    }
-  }
-
   render() {
-    const employee = this.props.employee;
+    const { employee, onDelete, onEdit, handleSubmit } = this.props
 
     return (
-
-        <form className="edit-employee-form" onSubmit={this.submitForm(employee.id)}>
+        <form className="edit-employee-form" onSubmit={handleSubmit(onDelete)}>
           <legend>Edit Employee</legend>
           <div className="form-group">
             <label>First Name</label>
-            <input value={employee.firstName} onChange={this.updateField(employee.id, "firstName")} className="form-control" id="firstName" type="text" placeholder="First Name" />
+            <Field className="form-control" value={employee.firstName} component="input" name="firstName" type="text" placeholder="First Name"/>
           </div>
           <div className="form-group">
             <label>Last Name</label>
-            <input value={employee.lastName}  onChange={this.updateField(employee.id, "lastName")} className="form-control" id="lastName" type="text" placeholder="Last Name" />
+            <Field className="form-control" value={employee.lastName} component="input" name="lastName" type="text" placeholder="Last Name" />
           </div>
           <div className="form-group">
             <label>Phone</label>
-            <input value={employee.phone} onChange={this.updateField(employee.id, "phone")} className="form-control" id="phone" type="text" placeholder="Phone" />
+            <Field className="form-control" value={employee.phone} component="input" name="phone" type="text" placeholder="Phone" />
           </div>
           <hr/>
-          <Link to="/" className="btn">Edit</Link>
+          <button type="button" className="btn" onClick={handleSubmit(onEdit)}>Edit</button>
             &nbsp;&nbsp;
           <button type="submit" className="btn btn-danger">Delete</button>
         </form>
@@ -46,6 +31,8 @@ class EmployeeEditForm extends React.Component {
   }
 }
 
+EmployeeEditForm = reduxForm({
+  form: 'contact'
+})(EmployeeEditForm)
 
-export default EmployeeEditForm
-
+export default EmployeeEditForm;

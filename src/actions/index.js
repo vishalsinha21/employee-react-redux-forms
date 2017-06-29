@@ -3,14 +3,9 @@ export const addEmployee = (firstName, lastName, phone) => ({
   firstName, lastName, phone
 })
 
-export const editEmployee = (firstName, lastName, phone) => ({
+export const editEmployee = (id, firstName, lastName, phone) => ({
   type: 'EDIT_EMPLOYEE',
-  firstName, lastName, phone
-})
-
-export const updateField = (id, key, value) => ({
-  type: 'UPDATE_FIELD',
-  id, key, value
+  id, firstName, lastName, phone
 })
 
 export const deleteEmployee = (id) => ({
