@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-
+import { validate } from './Validations'
+import { renderField } from './Form'
 
 class EmployeeEditForm extends React.Component {
 
@@ -27,35 +28,6 @@ class EmployeeEditForm extends React.Component {
     );
   }
 }
-
-const validate = values => {
-  const errors = {}
-  if (!values.firstName) {
-    errors.firstName = 'Required'
-  }
-
-  if (!values.lastName) {
-    errors.lastName = 'Required'
-  }
-
-  if (!values.phone) {
-    errors.phone = 'Required'
-  } else if (isNaN(Number(values.phone))) {
-    errors.phone = 'Must be a number'
-  }
-
-  return errors
-}
-
-const renderField = ({input, label, type, className, meta: {touched, error, warning}}) => (
-    <div>
-      <label>{label}</label>
-      <div>
-        <input {...input} placeholder={label} type={type} className={className}/>
-        {touched && (error && <p className="text-danger">{error}</p>)}
-      </div>
-    </div>
-)
 
 EmployeeEditForm = reduxForm({
   form: 'contact',
